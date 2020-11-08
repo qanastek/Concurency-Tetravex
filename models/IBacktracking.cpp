@@ -1,3 +1,9 @@
+/**
+* Labrak Yanis
+* M1 ILSEN ALT
+* Projet
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
