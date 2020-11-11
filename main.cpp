@@ -21,11 +21,17 @@ int main() {
     cout << "----------- Main -----------" << endl;
 
     // Intanciate the sequencial method
-    Sequential s;
+    Sequential seq = *new Sequential();
 
     // Load the 5x5 dataset
-    s.Load5x5();
+    cout << "Load5x5" << endl;
+    seq.Load5x5();
 
     // Display loaded cards
-    s.LeftCards();
+    cout << "DisplayCardsLeft" << endl;
+    seq.DisplayCardsLeft();
+
+    // Display the board
+    cout << "DisplayBoard" << endl;
+    seq.DisplayBoard();
 }

@@ -1,0 +1,71 @@
+@startuml Overview
+
+class User {
+    - algorithme: Backtracking
+}
+User "1" *-- "*" Backtracking
+
+class Board {
+    + tiles: Card[]
+    ---
+    + toString(): String
+}
+Board "1" *-- "*" Card
+
+class Card {
+    + values: Integer[4]
+    ---
+    + toString(): String
+}
+
+abstract class Backtracking {
+    + board: Board
+    + availableCards: Card[]
+    ---
+    - Backtracking(width: int, height: int): Void
+    + initBoard(x: Integer, y: Integer): Void
+    + Load5x5(): Void
+    + Load6x6(): Void
+    + Load7x7(): Void
+    + Load8x8(): Void
+    + DisplayLeftCards(): Void
+    + DisplayBoard(): Void
+    + LoadData(filename: String): Void
+    + {abstract} Process(): Void
+}
+note right of Backtracking
+Pattern: Strategy
+end note
+Backtracking "1" *-- "1" Board
+Backtracking "1" *-- "*" Card
+
+class Sequential extends Backtracking {
+    ---
+    + Sequential(board: Board, availableCards: Card[]): Void
+    + Process(): Void
+}
+
+class Parallal extends Backtracking {
+    - threadPool: ThreadPool
+    ---
+    + Parallal(board: Board, availableCards: Card[]): Void
+    + Process(): Void
+}
+
+class ThreadPool {
+    - nbrThreads: Integer
+    - queue: queue<function<void(int threadId)>>
+    - condition: condition_variable;
+    - condition2: condition_variable;
+    - queueMutex mutex;
+    - currentWorksCpt: atomic<int>;
+    - Pool: vector<thread>;
+    ---
+    + ThreadPool(nbrThreads: Integer): Void
+    + ThreadPoolLoop(threadId: int): Void
+    + Add_Job(function<void(int threadId)> job): Void
+    + waitFinished(): Void
+}
+Parallal "1" *-- "1" ThreadPool
+
+@enduml

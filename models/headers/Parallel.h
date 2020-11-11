@@ -14,14 +14,23 @@
 #include <algorithm> 
 #include <chrono>
 
-#include "IBacktracking.h"
+#include "Backtracking.h"
 
 using namespace std;
 using namespace std::chrono;
 
-class Parallel : public IBacktracking
+#ifndef PARALLEL_H
+#define PARALLEL_H
+
+class Parallel : public Backtracking
 {
 public:
-    // Constructeurs
+
+    // Constructors
     Parallel();
+        
+    // Abstract method for the processing 
+    virtual void Process();
 };
+
+#endif

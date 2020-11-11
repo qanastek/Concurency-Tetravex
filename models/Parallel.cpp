@@ -7,4 +7,9 @@
 #include "headers/Parallel.h"
 
 // Constructeurs
-Parallel::Parallel() {};
+Parallel::Parallel() {
+    cout << "----------- Parallel Initialized -----------" << endl;
+};
+
+void Parallel::Process() {
+};
