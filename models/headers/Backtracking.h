@@ -40,6 +40,9 @@ class Backtracking
 
         // Display the board
         void DisplayBoard();
+
+        // Solve the problem 
+        Board Solve();
         
         // Abstract method for the processing 
         virtual void Process() = 0;

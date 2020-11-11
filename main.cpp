@@ -24,14 +24,16 @@ int main() {
     Sequential seq = *new Sequential();
 
     // Load the 5x5 dataset
-    cout << "Load5x5" << endl;
     seq.Load5x5();
 
     // Display loaded cards
-    cout << "DisplayCardsLeft" << endl;
+    cout << endl << "DisplayCardsLeft" << endl;
     seq.DisplayCardsLeft();
 
     // Display the board
-    cout << "DisplayBoard" << endl;
+    cout << endl << "DisplayBoard" << endl;
     seq.DisplayBoard();
+
+    // Solve the board
+    seq.Solve();
 }

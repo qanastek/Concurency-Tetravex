@@ -127,3 +127,10 @@ void Backtracking::LoadData(string filename) {
         i++;
     }
 };
+
+Board Backtracking::Solve() {
+
+  this->Process();
+
+  return this->board;
+}

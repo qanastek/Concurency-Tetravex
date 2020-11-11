@@ -22,7 +22,7 @@ abstract class Backtracking {
     + board: Board
     + availableCards: Card[]
     ---
-    - Backtracking(width: int, height: int): Void
+    - Backtracking(): Void
     + initBoard(x: Integer, y: Integer): Void
     + Load5x5(): Void
     + Load6x6(): Void
@@ -41,14 +41,20 @@ Backtracking "1" *-- "*" Card
 
 class Sequential extends Backtracking {
     ---
-    + Sequential(board: Board, availableCards: Card[]): Void
+    + Sequential(): Void
     + Process(): Void
 }
 
 class Parallal extends Backtracking {
+    ---
+    + Parallal(): Void
+    + Process(): Void
+}
+
+class ParallalThreadPool extends Backtracking {
     - threadPool: ThreadPool
     ---
-    + Parallal(board: Board, availableCards: Card[]): Void
+    + ParallalThreadPool(board: Board, availableCards: Card[]): Void
     + Process(): Void
 }
 
@@ -66,6 +72,6 @@ class ThreadPool {
     + Add_Job(function<void(int threadId)> job): Void
     + waitFinished(): Void
 }
-Parallal "1" *-- "1" ThreadPool
+ParallalThreadPool "1" *-- "1" ThreadPool
 
 @enduml

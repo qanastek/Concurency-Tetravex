@@ -8,17 +8,23 @@
 
 // Constructeurs
 Card::Card() {
+
     this->top = 0;
     this->bottom = 0;
     this->left = 0;
     this->right = 0;
+
+    this->used = false;
 };
 
 Card::Card(int top, int bottom, int left, int right) {
+    
     this->top = top;
     this->bottom = bottom;
     this->left = left;
     this->right = right;
+
+    this->used = false;
 };
 
 bool Card::isEmpty() {

@@ -20,6 +20,8 @@ public:
     // Values
     int top, bottom, left, right;
 
+    bool used;
+
     // Constructors
     Card();
     Card(int top, int bottom, int left, int right);

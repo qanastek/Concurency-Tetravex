@@ -19,15 +19,15 @@
 using namespace std;
 using namespace std::chrono;
 
-#ifndef PARALLEL_H
-#define PARALLEL_H
+#ifndef PARALLAL_H
+#define PARALLAL_H
 
-class Parallel : public Backtracking
+class Parallal : public Backtracking
 {
 public:
 
     // Constructors
-    Parallel();
+    Parallal();
         
     // Abstract method for the processing 
     virtual void Process();
