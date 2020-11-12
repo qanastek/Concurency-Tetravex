@@ -11,5 +11,5 @@ ParallalThreadPool::ParallalThreadPool() {
     cout << "----------- ParallalThreadPool Initialized -----------" << endl;
 };
 
-void ParallalThreadPool::Process() {
+bool ParallalThreadPool::Process(Board b, Coordinate currentPos) {
 };

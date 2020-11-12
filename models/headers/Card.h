@@ -20,6 +20,7 @@ public:
     // Values
     int top, bottom, left, right;
 
+    // Is used
     bool used;
 
     // Constructors
@@ -28,6 +29,13 @@ public:
 
     // Return if is empty
     bool isEmpty();
+
+    // Return if is used
+    bool isUsed();
+
+    // Change the usage status
+    void visit();
+    void unvisit();
 
     // toString
     string toString();

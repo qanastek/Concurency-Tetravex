@@ -16,6 +16,9 @@
 
 #include "Backtracking.h"
 
+#include "Coordinate.h"
+#include "Board.h"
+
 using namespace std;
 using namespace std::chrono;
 
@@ -30,7 +33,7 @@ public:
     Parallal();
         
     // Abstract method for the processing 
-    virtual void Process();
+    virtual bool Process(Board b, Coordinate currentPos);
 };
 
 #endif

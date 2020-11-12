@@ -7,6 +7,7 @@ using namespace std;
 
 #include "Card.h"
 #include "Board.h"
+#include "Coordinate.h"
 
 #ifndef BACKTRACKING_H
 #define BACKTRACKING_H
@@ -20,6 +21,9 @@ class Backtracking
 
         // The game board
         Board board = *new Board(0,0);
+
+        // End of the board
+        Coordinate END = *new Coordinate(0,0);
 
         Backtracking();
 
@@ -45,7 +49,7 @@ class Backtracking
         Board Solve();
         
         // Abstract method for the processing 
-        virtual void Process() = 0;
+        virtual bool Process(Board b, Coordinate currentPos) = 0;
 };
 
 #endif

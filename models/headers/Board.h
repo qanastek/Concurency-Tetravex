@@ -11,6 +11,7 @@
 #include <string>
 
 #include "Card.h"
+#include "Coordinate.h"
 
 using namespace std;
 
@@ -38,6 +39,21 @@ public:
     
     // Return if is empty
     bool isEmpty();
+
+    // Check if the position is already used
+    bool isUsed(Coordinate pos);
+
+    // Get the next empty slot
+    Coordinate nextEmpty();
+    
+    // Put a card
+    bool put(vector<Card> cards, Coordinate c);
+
+    // Remove the card
+    void remove(vector<Card> cards, Coordinate c);
+    
+    // Return the next available card
+    Card getNextCard(vector<Card> cards);
 
     // toString
     string toString();

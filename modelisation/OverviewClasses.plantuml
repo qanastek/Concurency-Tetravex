@@ -13,7 +13,10 @@ class Board {
 Board "1" *-- "*" Card
 
 class Card {
-    + values: Integer[4]
+    + top: Integer
+    + bottom: Integer
+    + left: Integer
+    + right: Integer
     ---
     + toString(): String
 }

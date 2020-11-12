@@ -49,6 +49,16 @@ bool Board::isEmpty() {
     return false;
 };
 
+
+bool Board::isUsed(Coordinate pos) {
+
+    // If not empty
+    if(!this->content[pos.x][pos.y].isEmpty())
+        return true;
+
+    return false;
+};
+
 string Board::toString() {
 
     // Check empty
@@ -74,4 +84,70 @@ string Board::toString() {
     cout << "]" << endl;
 
     return str;
+};
+
+Card Board::getNextCard(vector<Card> cards) {
+
+    // For each card
+    for(Card c : cards)
+    {
+        // If not already used, return it
+        if (!c.isUsed()) return c;
+    }
+
+    // Else return empty card
+    return *new Card();
+}
+
+bool Board::put(vector<Card> cards, Coordinate c) {
+
+    // Get the next card
+    Card card = getNextCard(cards);
+
+    // If empty return cannot put
+    if(card.isEmpty()) return false;
+
+    // Set as visited
+    card.visit();
+
+    // Place the card
+    this->content[c.x][c.y] = card;
+
+    return true;
+}
+
+void Board::remove(vector<Card> cards, Coordinate c) {
+    
+    // Get the placed card
+    Card card = content[c.x][c.y];
+
+    // Restore unused state
+    card.unvisit();
+
+    // Remove it from the board
+    content[c.x][c.y] = *new Card();
+};
+
+Coordinate Board::nextEmpty() {
+
+    // Row
+    for (int i = 0; i < this->content.size(); i++)
+    {
+        // Col
+        for (int j = 0; j < this->content[i].size(); j++)
+        {
+            // If empty
+            if (this->content[i][j].isEmpty())
+            {
+                // Return the blank position
+                return *new Coordinate(i,j);
+            }            
+        }
+    }
+    
+    // If not found return the last element
+    return *new Coordinate(
+        this->content.size() - 1,
+        this->content[0].size() - 1
+    );
 };

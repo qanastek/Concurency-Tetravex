@@ -9,10 +9,10 @@
 // Constructeurs
 Card::Card() {
 
-    this->top = 0;
-    this->bottom = 0;
-    this->left = 0;
-    this->right = 0;
+    this->top    = -1;
+    this->bottom = -1;
+    this->left   = -1;
+    this->right  = -1;
 
     this->used = false;
 };
@@ -29,15 +29,19 @@ Card::Card(int top, int bottom, int left, int right) {
 
 bool Card::isEmpty() {
 
-    if(this->top     == 0 &&
-       this->bottom  == 0 &&
-       this->left     == 0 &&
-       this->right     == 0
+    if(this->top     == -1 &&
+       this->bottom  == -1 &&
+       this->left    == -1 &&
+       this->right   == -1
     ) {
         return true;
     }
 
     return false;
+};
+
+bool Card::isUsed() {
+    return used;
 };
 
 string Card::toString() {
@@ -56,3 +60,11 @@ string Card::toString() {
     // // Before
     // return "[" + t + ", " + b + ", " + l + ", " + r + "]";
 }
+
+void Card::visit() {
+    used = true;
+};
+
+void Card::unvisit() {
+    used = false;
+};
