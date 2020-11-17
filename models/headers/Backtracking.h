@@ -39,9 +39,6 @@ class Backtracking
         // Display the cards available in cards
         void DisplayCardsLeft();
 
-        // Display the board
-        void DisplayBoard();
-
         // Solve the problem 
         Board Solve();
         

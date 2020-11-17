@@ -4,32 +4,25 @@
 * Projet
 */
 
-#include <iostream>
-#include <thread>
-#include <math.h>
-#include <queue>
-#include <condition_variable>
-#include <mutex>
-#include <atomic>
-#include <algorithm> 
-#include <chrono>
+#include "headers/ThreadPool.h"
 
-using namespace std;
-using namespace std::chrono;
+static atomic<double> totalRes;
+static atomic<int> currentWorksCpt(0);
 
-atomic<double> totalRes;
+static queue<function<void(int threadId)>> Queue;
+static condition_variable condition;
+static condition_variable condition2;
+static mutex QueueMutex;
+static vector<thread> Pool;
 
-queue<function<void(int threadId)>> Queue;
-condition_variable condition;
-condition_variable condition2;
-mutex QueueMutex;
-atomic<int> currentWorksCpt(0);
-vector<thread> Pool;
+ThreadPool::ThreadPool() {
+	
+}
 
 /**
 * Factorial
 */
-unsigned long long fact(unsigned long long n)
+unsigned long long ThreadPool::fact(unsigned long long n)
 {
     if(n > 1)
         return n * fact(n - 1);
@@ -42,7 +35,7 @@ unsigned long long fact(unsigned long long n)
 * Example:
 * 	((-1)^0)/(0!)+((-1)^1)/(1!)+((-1)^2)/(2!)+((-1)^3)/(3!)
 */
-int e(const int i) {
+int ThreadPool::e(const int i) {
 
 	// Power
 	double p = pow(-1,i);
@@ -59,7 +52,11 @@ int e(const int i) {
 	return res;
 };
 
-void ThreadPoolLoop(int threadId)
+void ThreadPool::Add_Thread(int i) {
+	Pool.push_back(thread(ThreadPoolLoop, i));
+}
+
+void ThreadPool::ThreadPoolLoop(int threadId)
 {
     while(true)
     {
@@ -101,7 +98,7 @@ void ThreadPoolLoop(int threadId)
     }
 };
 
-void Add_Job(function<void(int threadId)> job)
+void ThreadPool::Add_Job(function<void(int threadId)> job)
 {
 	// 
     unique_lock<mutex> lock(QueueMutex);
@@ -117,7 +114,7 @@ void Add_Job(function<void(int threadId)> job)
 };
 
 // Wait until the queue is empty.
-void waitFinished()
+void ThreadPool::waitFinished()
 {
     unique_lock<mutex> lock(QueueMutex);
 
@@ -130,60 +127,4 @@ void waitFinished()
 	cout << totalRes << endl;
 	cout << "---------Tasks left--------------" << endl;
 	cout << to_string(currentWorksCpt) << " Task left." << endl;
-}
-
-/**
-* Main
-*/
-int main() {
-
-	// Start the timer
-    auto start = high_resolution_clock::now(); 
-
-	// // Without any thread pool
-	// int resultat = e(20);
-	// cout << "Resultat: " << resultat << endl;
-
-	// The number of jobs
-	int n = 5;
-
-	// CPU Threads 
-	int Num_Threads = thread::hardware_concurrency();
-
-	// Run informations
-	cout << "-----------------------" << endl;
-	cout << "-- CPU Threads: " << Num_Threads << endl;
-	cout << "-- Tasks: " << n << endl;
-	cout << "-----------------------" << endl;
-
-	// Add threads to the pool
-	for(int i = 0; i < Num_Threads; i++) {
-		Pool.push_back(thread(ThreadPoolLoop, i));
-	}
-
-	// Add jobs for each steps
-	for (int i = 0; i < n; ++i)
-	{
-		// Add a job
-		Add_Job([i](int threadId){
-
-			// The result
-			double res = e(i);
-
-			// Debug
-			string output = "Job #" + to_string(i) + " local res: " + to_string(res) + ". Thread " + to_string(threadId) + "\n";
-			cout << output << endl;
-			
-		});
-	}
-
-	// Wait the end of all the jobs
-	waitFinished();
-
-	// Stop the timer
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<milliseconds>(stop - start);
-    cout << "Total time: " << duration.count() << " ms" << endl;
-
-    return 0;
 }

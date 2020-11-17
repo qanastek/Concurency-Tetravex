@@ -28,12 +28,4 @@ int main() {
 
     // Solve the board
     seq.Solve();
-
-    // Display loaded cards
-    cout << endl << "DisplayCardsLeft" << endl;
-    seq.DisplayCardsLeft();
-
-    // Display the board
-    cout << endl << "DisplayBoard" << endl;
-    seq.DisplayBoard();
 }

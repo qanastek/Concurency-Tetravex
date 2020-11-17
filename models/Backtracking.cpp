@@ -66,10 +66,6 @@ void Backtracking::DisplayCardsLeft() {
   }
 }
 
-void Backtracking::DisplayBoard() {
-  cout << this->board.toString() << endl;
-}
-
 void Backtracking::LoadData(string filename) {
 
     cout << "----------- LoadData: " << filename << " -----------" << endl;

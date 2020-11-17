@@ -10,14 +10,10 @@ class Board {
     ---
     + Board()
     + Board(width: int, height: int)
+    + initBoard(x: int, y: int): void;
     + isEmpty(): bool
-    + isUsed(pos: Coordinate): bool
-    + get(x: int, y: int): Card
-    + set(x: int, y: int, c: Card): void
     + nextEmpty(): Coordinate
-    + put(cards: vector<Card>, c: Coordinate): bool
-    + remove(cards: vector<Card>, c: Coordinate): void
-    + getNextCard(cards: vector<Card>): Card
+    + canPlaced(card: Card, c: Coordinate): bool
     + toString(): String
 }
 Board o-- Coordinate

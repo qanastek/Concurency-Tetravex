@@ -32,8 +32,8 @@ public:
     // Constructors
     Sequential();
     
-    // Return the next available card
-    int getNextCard(vector<Card> cards);
+    // Return if there is any card left unused
+    bool cardsLeft(vector<Card> &cds);
         
     // Abstract method for the processing 
     virtual bool Process(vector<Card> &cards, Board b, Coordinate currentPos);
