@@ -18,9 +18,9 @@ using namespace std::chrono;
 */
 int main() {
 
-    cout << "----------- Main -----------" << endl;
+    cout << "----------- Main Seq -----------" << endl;
 
-    // Intanciate the sequencial method
+    // Intantiate the sequencial method
     Sequential seq = *new Sequential();
 
     // Load the 5x5 dataset

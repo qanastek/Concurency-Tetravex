@@ -66,6 +66,17 @@ void Backtracking::DisplayCardsLeft() {
   }
 }
 
+bool Backtracking::cardsLeft(vector<Card> &cds) {
+
+    for(Card c : cds)
+    {
+        if (!c.isUsed())
+            return true;                
+    }
+
+    return false;
+}
+
 void Backtracking::LoadData(string filename) {
 
     cout << "----------- LoadData: " << filename << " -----------" << endl;

@@ -12,17 +12,6 @@ Sequential::Sequential() {
     cout << "----------- Sequential Initialized -----------" << endl;
 };
 
-bool Sequential::cardsLeft(vector<Card> &cds) {
-
-    for(Card c : cds)
-    {
-        if (!c.isUsed())
-            return true;                
-    }
-
-    return false;
-}
-
 bool Sequential::Process(vector<Card> &cards, Board b, Coordinate currentPos) {
 
     cout << "New instance: " << currentPos.toString() << endl;
@@ -51,7 +40,7 @@ bool Sequential::Process(vector<Card> &cards, Board b, Coordinate currentPos) {
 
             // Can we place the card here ?
 			if (b.canPlaced(cards[k], currentPos))  {
-
+                
                 // Visit it
                 cards[k].visit();
 
@@ -67,10 +56,8 @@ bool Sequential::Process(vector<Card> &cards, Board b, Coordinate currentPos) {
 
                 // Unvisit it
                 cards[k].unvisit();
-
             }
-        }
-        
+        }        
     }
 
     return false;

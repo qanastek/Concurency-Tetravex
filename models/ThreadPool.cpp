@@ -16,7 +16,19 @@ static mutex QueueMutex;
 static vector<thread> Pool;
 
 ThreadPool::ThreadPool() {
-	
+
+	// CPU Threads 
+	int Num_Threads = thread::hardware_concurrency();
+
+	// Add threads to the pool
+	for(int i = 0; i < Num_Threads; i++) {
+		Add_Thread(i);		
+	}	
+
+	// Run informations
+	cout << "-----------------------" << endl;
+	cout << "--\tCPU Threads: " << Num_Threads << endl;
+	cout << "-----------------------" << endl;
 }
 
 /**

@@ -18,6 +18,8 @@
 
 #include "Coordinate.h"
 #include "Board.h"
+#include "ThreadPool.h"
+
 
 using namespace std;
 using namespace std::chrono;
@@ -28,6 +30,8 @@ using namespace std::chrono;
 class ParallalThreadPool : public Backtracking
 {
 public:
+
+    ThreadPool* threadPool = new ThreadPool();
 
     // Constructors
     ParallalThreadPool();

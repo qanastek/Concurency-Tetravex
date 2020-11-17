@@ -10,7 +10,7 @@
 Board::Board() {
 
     // Init board
-    this->initBoard(3,3);
+    this->initBoard(0,0);
 };
 
 Board::Board(int width, int height) {
@@ -82,19 +82,9 @@ bool Board::canPlaced(Card &card, Coordinate c) {
     if(c.x == 0 && c.y == 0)
         return true;
 
-    // first row
-    if(c.x == 0) {
-
-        // If not the same
-        if (content[c.x][c.y-1].right != card.left)
-        {
-            return false;
-        }
-    }
-
-    // first col
-    if(c.y == 0) {
-
+    // not first row
+    if(c.x != 0) {
+        
         // If not the same
         if (content[c.x-1][c.y].bottom != card.top)
         {
@@ -102,13 +92,16 @@ bool Board::canPlaced(Card &card, Coordinate c) {
         }  
     }
 
-    // if(c.x != 0 && c.y != 0) {
+    // first col
+    if(c.y != 0) {
 
-    //     // If not the same
-    //     if(content[c.x-1][c.y].bottom != card.top &&
-    //        content[c.x][c.y-1].right != card.left)
-    //         return false;
-    // }
+        // If not the same
+        if (content[c.x][c.y-1].right != card.left)
+        {
+            return false;
+        }
+
+    }
 
     return true;
 }
