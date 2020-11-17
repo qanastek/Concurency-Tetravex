@@ -3,6 +3,8 @@
 * M1 ILSEN ALT
 * Projet
 */
+#include <iostream>
+#include <thread>
 
 #include "headers/ThreadPool.h"
 
@@ -21,9 +23,8 @@ ThreadPool::ThreadPool() {
 	int Num_Threads = thread::hardware_concurrency();
 
 	// Add threads to the pool
-	for(int i = 0; i < Num_Threads; i++) {
-		Add_Thread(i);		
-	}	
+	for(int i = 0; i < Num_Threads; i++)
+		Add_Thread(i);
 
 	// Run informations
 	cout << "-----------------------" << endl;
@@ -31,43 +32,12 @@ ThreadPool::ThreadPool() {
 	cout << "-----------------------" << endl;
 }
 
-/**
-* Factorial
-*/
-unsigned long long ThreadPool::fact(unsigned long long n)
-{
-    if(n > 1)
-        return n * fact(n - 1);
-    else
-        return 1;
-}
-
-/**
-* Epodential
-* Example:
-* 	((-1)^0)/(0!)+((-1)^1)/(1!)+((-1)^2)/(2!)+((-1)^3)/(3!)
-*/
-int ThreadPool::e(const int i) {
-
-	// Power
-	double p = pow(-1,i);
-
-	// Factorial
-	unsigned long long f = fact(i);
-
-	// Result
-	double res = p / f;
-
-	// Add it to the total
-	totalRes =+ res;
-
-	return res;
-};
-
+// Add a thread to the pool
 void ThreadPool::Add_Thread(int i) {
 	Pool.push_back(thread(ThreadPoolLoop, i));
 }
 
+// The processing loop of the thread
 void ThreadPool::ThreadPoolLoop(int threadId)
 {
     while(true)
@@ -110,6 +80,7 @@ void ThreadPool::ThreadPoolLoop(int threadId)
     }
 };
 
+// Add a job to the queue
 void ThreadPool::Add_Job(function<void(int threadId)> job)
 {
 	// 

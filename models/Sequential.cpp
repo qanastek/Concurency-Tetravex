@@ -12,7 +12,7 @@ Sequential::Sequential() {
     cout << "----------- Sequential Initialized -----------" << endl;
 };
 
-bool Sequential::Process(vector<Card> &cards, Board b, Coordinate currentPos) {
+bool Sequential::Process(vector<Card> cards, Board b, Coordinate currentPos) {
 
     cout << "New instance: " << currentPos.toString() << endl;
 
@@ -32,7 +32,7 @@ bool Sequential::Process(vector<Card> &cards, Board b, Coordinate currentPos) {
     }
 
     // Pour chaque pièce dans le tas
-    for (int k = 0; k < this->cards.size(); k++)
+    for (unsigned int k = 0; k < this->cards.size(); k++)
     {
         // Vérifier l'utilisation de la piece ainsi que la posibilité de la pose
         if (!cards[k].isUsed())

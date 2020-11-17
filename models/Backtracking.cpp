@@ -89,7 +89,6 @@ void Backtracking::LoadData(string filename) {
     }
 
     // Current values
-    int value;
     string line;
 
     // Index
@@ -134,11 +133,3 @@ void Backtracking::LoadData(string filename) {
         i++;
     }
 };
-
-Board Backtracking::Solve() {
-
-  // Start the recursion fron the top left corner
-  this->Process(this->cards, this->board, *new Coordinate(0,0));
-
-  return this->board;
-}

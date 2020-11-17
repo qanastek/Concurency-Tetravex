@@ -29,11 +29,16 @@ public:
     // Constructors
     ThreadPool();
     
-    unsigned long long fact(unsigned long long n);
-    int e(const int i);
+    // The processing loop of the thread
     static void ThreadPoolLoop(int threadId);
+    
+    // Add a job to the queue
     void Add_Job(function<void(int threadId)> job);
+    
+    // Add a thread to the pool
     void Add_Thread(int i);
+
+    // Wait until the queue is empty.
     void waitFinished();
 };
 

@@ -33,7 +33,15 @@ public:
     Sequential();
         
     // Abstract method for the processing 
-    virtual bool Process(vector<Card> &cards, Board b, Coordinate currentPos);
+    bool Process(vector<Card> cards, Board b, Coordinate currentPos);
+    
+    Board Solve() {
+
+        // Start the recursion fron the top left corner
+        this->Process(this->cards, this->board, *new Coordinate(0,0));
+
+        return this->board;
+    }
 };
 
 #endif

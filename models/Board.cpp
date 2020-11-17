@@ -110,10 +110,10 @@ bool Board::canPlaced(Card &card, Coordinate c) {
 Coordinate Board::nextEmpty() {
 
     // Row
-    for (int i = 0; i < this->content.size(); i++)
+    for (unsigned int i = 0; i < this->content.size(); i++)
     {
         // Col
-        for (int j = 0; j < this->content[i].size(); j++)
+        for (unsigned int j = 0; j < this->content[i].size(); j++)
         {
             // If empty
             if (this->content[i][j].isEmpty())
