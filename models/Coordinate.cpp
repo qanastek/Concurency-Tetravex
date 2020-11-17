@@ -29,3 +29,11 @@ bool Coordinate::isEmpty() {
 
     return false;
 }
+
+string Coordinate::toString() {
+
+    string a = to_string(this->x);
+    string b = to_string(this->y);
+
+    return "x: " + a + ", y: " + b;
+}

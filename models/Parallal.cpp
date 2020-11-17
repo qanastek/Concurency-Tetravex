@@ -11,5 +11,5 @@ Parallal::Parallal() {
     cout << "----------- Parallal Initialized -----------" << endl;
 };
 
-bool Parallal::Process(Board b, Coordinate currentPos) {
+bool Parallal::Process(vector<Card> &cards, Board b, Coordinate currentPos) {
 };

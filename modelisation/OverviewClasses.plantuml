@@ -6,10 +6,21 @@ class User {
 User "1" *-- "*" Backtracking
 
 class Board {
-    + tiles: Card[]
+    + content: vector<vector<Card>>
     ---
+    + Board()
+    + Board(width: int, height: int)
+    + isEmpty(): bool
+    + isUsed(pos: Coordinate): bool
+    + get(x: int, y: int): Card
+    + set(x: int, y: int, c: Card): void
+    + nextEmpty(): Coordinate
+    + put(cards: vector<Card>, c: Coordinate): bool
+    + remove(cards: vector<Card>, c: Coordinate): void
+    + getNextCard(cards: vector<Card>): Card
     + toString(): String
 }
+Board o-- Coordinate
 Board "1" *-- "*" Card
 
 class Card {
@@ -18,14 +29,20 @@ class Card {
     + left: Integer
     + right: Integer
     ---
+    + Card()
+    + Card(top: int, bottom: int, left: int, right: int)
+    + isEmpty(): bool
+    + isUsed(): bool
+    + visit(): void
+    + unvisit(): void
     + toString(): String
 }
 
 abstract class Backtracking {
     + board: Board
-    + availableCards: Card[]
+    + availableCards: vector<Card>
     ---
-    - Backtracking(): Void
+    - Backtracking()
     + initBoard(x: Integer, y: Integer): Void
     + Load5x5(): Void
     + Load6x6(): Void
@@ -33,8 +50,9 @@ abstract class Backtracking {
     + Load8x8(): Void
     + DisplayLeftCards(): Void
     + DisplayBoard(): Void
+    + Solve(): Board
     + LoadData(filename: String): Void
-    + {abstract} Process(): Void
+    + {abstract} Process(b: Board, currentPos: Coordinate): Void
 }
 note right of Backtracking
 Pattern: Strategy
@@ -45,36 +63,47 @@ Backtracking "1" *-- "*" Card
 class Sequential extends Backtracking {
     ---
     + Sequential(): Void
-    + Process(): Void
+    + Process(b: Board, currentPos: Coordinate): Void
 }
 
 class Parallal extends Backtracking {
     ---
     + Parallal(): Void
-    + Process(): Void
+    + Process(b: Board, currentPos: Coordinate): Void
 }
 
 class ParallalThreadPool extends Backtracking {
     - threadPool: ThreadPool
     ---
     + ParallalThreadPool(board: Board, availableCards: Card[]): Void
-    + Process(): Void
+    + Process(b: Board, currentPos: Coordinate): Void
 }
 
 class ThreadPool {
     - nbrThreads: Integer
-    - queue: queue<function<void(int threadId)>>
+    - queue: queue<function<void(threadId: int)>>
     - condition: condition_variable;
     - condition2: condition_variable;
     - queueMutex mutex;
     - currentWorksCpt: atomic<int>;
     - Pool: vector<thread>;
     ---
-    + ThreadPool(nbrThreads: Integer): Void
+    + ThreadPool(nbrThreads: int): Void
     + ThreadPoolLoop(threadId: int): Void
-    + Add_Job(function<void(int threadId)> job): Void
+    + Add_Job(function<void(threadId: int)> job): Void
     + waitFinished(): Void
 }
 ParallalThreadPool "1" *-- "1" ThreadPool
+
+class Coordinate {
+    + x: int
+    + y: int
+    ---
+    + Coordinate();
+    + Coordinate(x: int, y: int);
+    + operator==(c: Coordinate): bool
+    + isEmpty(): bool
+    + toString(): String
+}
 
 @enduml

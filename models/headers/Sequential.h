@@ -31,9 +31,12 @@ public:
 
     // Constructors
     Sequential();
+    
+    // Return the next available card
+    int getNextCard(vector<Card> cards);
         
     // Abstract method for the processing 
-    virtual bool Process(Board b, Coordinate currentPos);
+    virtual bool Process(vector<Card> &cards, Board b, Coordinate currentPos);
 };
 
 #endif

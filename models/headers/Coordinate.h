@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 #ifndef COORDINATE_H
 #define COORDINATE_H
@@ -17,6 +20,9 @@ public:
 
     // Check if empty
     bool isEmpty();
+
+    // toString
+    string toString();
 };
 
 #endif

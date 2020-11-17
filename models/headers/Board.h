@@ -26,6 +26,7 @@ public:
     vector<vector<Card>> content;
 
     // Constructeur
+    Board();
     Board(int width, int height);
 
     // Initialize the board
@@ -37,6 +38,12 @@ public:
     // Set the card at (x,y)
     void set(int x, int y, Card c);
     
+    // Get the end coordinates of the board
+    Coordinate end();
+
+    // Get board total dimension
+    int getDimension();
+    
     // Return if is empty
     bool isEmpty();
 
@@ -47,13 +54,25 @@ public:
     Coordinate nextEmpty();
     
     // Put a card
-    bool put(vector<Card> cards, Coordinate c);
+    int put(vector<Card> &cards, Coordinate c);
 
     // Remove the card
-    void remove(vector<Card> cards, Coordinate c);
+    void remove(vector<Card> &cards, Coordinate c);
+
+    // Can we place the card here ?
+    bool canPlaced(Card &card, Coordinate c);
     
     // Return the next available card
-    Card getNextCard(vector<Card> cards);
+    int getNextCard(vector<Card> cards);
+    
+    // Case element
+    bool case0(Card card, Coordinate c);
+    // Case first row
+    bool case1(Card card, Coordinate c);
+    // Case first col
+    bool case2(Card card, Coordinate c);
+    // Case others
+    bool case3(Card card, Coordinate c);
 
     // toString
     string toString();

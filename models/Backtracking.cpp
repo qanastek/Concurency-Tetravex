@@ -22,9 +22,6 @@ void Backtracking::initBoard(int x, int y) {
 
   // Initialize the board
   this->board.initBoard(x,y);
-
-  // The last tile
-  this->END = *new Coordinate(x-1,y-1);
 }
         
 void Backtracking::Load5x5() {
@@ -134,7 +131,7 @@ void Backtracking::LoadData(string filename) {
 Board Backtracking::Solve() {
 
   // Start the recursion fron the top left corner
-  this->Process(this->board, *new Coordinate(0,0));
+  this->Process(this->cards, this->board, *new Coordinate(0,0));
 
   return this->board;
 }

@@ -33,7 +33,7 @@ public:
     Parallal();
         
     // Abstract method for the processing 
-    virtual bool Process(Board b, Coordinate currentPos);
+    virtual bool Process(vector<Card> &cards, Board b, Coordinate currentPos);
 };
 
 #endif

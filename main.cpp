@@ -26,6 +26,9 @@ int main() {
     // Load the 5x5 dataset
     seq.Load5x5();
 
+    // Solve the board
+    seq.Solve();
+
     // Display loaded cards
     cout << endl << "DisplayCardsLeft" << endl;
     seq.DisplayCardsLeft();
@@ -33,7 +36,4 @@ int main() {
     // Display the board
     cout << endl << "DisplayBoard" << endl;
     seq.DisplayBoard();
-
-    // Solve the board
-    seq.Solve();
 }

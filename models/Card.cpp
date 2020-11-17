@@ -17,12 +17,12 @@ Card::Card() {
     this->used = false;
 };
 
-Card::Card(int top, int bottom, int left, int right) {
+Card::Card(int t, int b, int l, int r) {
     
-    this->top = top;
-    this->bottom = bottom;
-    this->left = left;
-    this->right = right;
+    this->top = t;
+    this->bottom = b;
+    this->left = l;
+    this->right = r;
 
     this->used = false;
 };
@@ -44,6 +44,14 @@ bool Card::isUsed() {
     return used;
 };
 
+void Card::visit() {
+    used = true;
+};
+
+void Card::unvisit() {
+    used = false;
+};
+
 string Card::toString() {
 
     // Check empty
@@ -54,17 +62,10 @@ string Card::toString() {
     string b = to_string(this->bottom);
     string l = to_string(this->left);
     string r = to_string(this->right);
+    string s = isUsed() ? "X" : "";
 
-    return "[" + l + ", " + t + ", " + r + ", " + b + "]";
+    return "[" + l + ", " + t + ", " + r + ", " + b + "] " + s;
 
     // // Before
     // return "[" + t + ", " + b + ", " + l + ", " + r + "]";
 }
-
-void Card::visit() {
-    used = true;
-};
-
-void Card::unvisit() {
-    used = false;
-};
