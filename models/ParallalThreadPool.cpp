@@ -16,7 +16,7 @@ static int cpt = 0;
 // Constructeurs
 ParallalThreadPool::ParallalThreadPool() {
 
-    cout << "----------- ParallalThreadPool Initialized -----------" << endl;
+    // cout << "----------- ParallalThreadPool Initialized -----------" << endl;
 };
 
 bool ParallalThreadPool::Process(vector<Card> cards, Board b, Coordinate currentPos) {
@@ -25,10 +25,10 @@ bool ParallalThreadPool::Process(vector<Card> cards, Board b, Coordinate current
     for (unsigned int i = 0; i < this->cards.size(); i++)
     {
 
-        cout << "Setup the seq for the card: " << i << endl;
+        cout << "Create the Job for: " << i << endl;
 
 		// Add a job
-		threadPool->Add_Job([&](int threadId){
+		threadPool->Add_Job([cards,i,b](int threadId){
 
 			// Counter of jobs
             cpt++;
@@ -46,13 +46,13 @@ bool ParallalThreadPool::Process(vector<Card> cards, Board b, Coordinate current
             c[i].visit();
 
             // Place it
-            Board b = board;
-            b.content[0][0] = c[i];
+            Board board = b;
+            board.content[0][0] = c[i];
 
             // Sequencial for i
             seq.Process(
                 c,
-                b,
+                board,
                 *new Coordinate(0,1)
             );
 		});

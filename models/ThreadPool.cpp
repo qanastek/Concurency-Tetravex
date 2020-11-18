@@ -106,6 +106,8 @@ void ThreadPool::waitFinished()
 
     cout << "All jobs are done!" << endl << endl;
 
+	exit(0);
+
 	cout << "---------Résultat--------------" << endl;
 	cout << totalRes << endl;
 	cout << "---------Jobs left--------------" << endl;

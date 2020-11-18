@@ -15,7 +15,7 @@
 using namespace std;
 
 Backtracking::Backtracking() {
-  cout << "----------- Backtracking Initialized -----------" << endl;
+  // cout << "----------- Backtracking Initialized -----------" << endl;
 };
 
 void Backtracking::initBoard(int x, int y) {

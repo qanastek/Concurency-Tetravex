@@ -12,7 +12,7 @@
 
 #include "models/headers/Backtracking.h"
 #include "models/headers/Sequential.h"
-// #include "models/headers/Parallal.h"
+#include "models/headers/Parallal.h"
 #include "models/headers/ParallalThreadPool.h"
 
 using namespace std;
@@ -42,12 +42,14 @@ int main(int argc, char *argv[]) {
     }
     else if (strcmp(argv[1], "para" ) == 0 ) {
 
-        // Intantiate the sequencial method
-        // b = new Parallal();
+        // Intantiate the Parallal method
+        Parallal* b = new Parallal();
+        b->Load5x5();
+        b->Solve();
     }
     else if (strcmp(argv[1], "pool" ) == 0 ) {
 
-        // Intantiate the sequencial method
+        // Intantiate the ParallalThreadPool method
         ParallalThreadPool* b = new ParallalThreadPool();
         b->Load5x5();
         b->Solve();
