@@ -34,10 +34,6 @@ bool Parallal::Process(vector<Card> cards, Board b, Coordinate currentPos) {
 
             thread([&](){
 
-                // // Debug
-                // string output = "Job #" + to_string(cpt) +
-                // ". Thread " + to_string(threadId) + "\n";
-
                 // Visit
                 vector<Card> c = cards;
                 c[i].visit();

@@ -108,6 +108,17 @@ void ThreadPool::waitFinished()
 
 	cout << "---------Résultat--------------" << endl;
 	cout << totalRes << endl;
-	cout << "---------Tasks left--------------" << endl;
+	cout << "---------Jobs left--------------" << endl;
 	cout << to_string(currentWorksCpt) << " Task left." << endl;
+}
+
+// Wait until the threads are finished
+void ThreadPool::waitThreads() {
+
+    // Wait for the threads
+    for (thread& t : Pool) {
+
+		if(t.joinable())
+			t.join();
+	}
 }

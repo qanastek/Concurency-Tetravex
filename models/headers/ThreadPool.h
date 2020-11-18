@@ -40,6 +40,8 @@ public:
 
     // Wait until the queue is empty.
     void waitFinished();
+    
+    void waitThreads();
 };
 
 #endif

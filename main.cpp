@@ -23,7 +23,7 @@ using namespace std::chrono;
 */
 int main(int argc, char *argv[]) {
 
-    cout << "----------- Main Seq -----------" << endl;
+    cout << "----------- Main -----------" << endl;
 
     int argsSize = 2;
 
@@ -31,9 +31,6 @@ int main(int argc, char *argv[]) {
         cerr << (argc > argsSize ? "Too much arguments" : "Not enaugh arguments") << endl;        
         exit(0);
     }
-
-    // The Strategy
-    // Backtracking* b;
 
     // Type
     if (strcmp(argv[1], "seq" ) == 0 ) {
@@ -55,21 +52,4 @@ int main(int argc, char *argv[]) {
         b->Load5x5();
         b->Solve();
     }
-
-    // // Load the dataset
-    // if (strcmp(argv[2], "5" ) == 0 ) {
-    //     b->Load5x5();
-    // }
-    // else if (strcmp(argv[2], "6" ) == 0 ) {
-    //     b->Load6x6();
-    // }
-    // else if (strcmp(argv[2], "7" ) == 0 ) {
-    //     b->Load7x7();
-    // }
-    // else if (strcmp(argv[2], "8" ) == 0 ) {
-    //     b->Load8x8();
-    // }
-
-    // Solve the board
-    // b->Solve();
 }

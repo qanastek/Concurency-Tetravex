@@ -24,15 +24,13 @@ bool ParallalThreadPool::Process(vector<Card> cards, Board b, Coordinate current
     // Pour chaque pièce dans le tas
     for (unsigned int i = 0; i < this->cards.size(); i++)
     {
-        // Intantiate the sequencial method
-        Sequential seq = *new Sequential();
 
         cout << "Setup the seq for the card: " << i << endl;
 
 		// Add a job
 		threadPool->Add_Job([&](int threadId){
 
-			// Debug
+			// Counter of jobs
             cpt++;
 
 			string output = "Job #" + to_string(cpt) +
@@ -40,21 +38,31 @@ bool ParallalThreadPool::Process(vector<Card> cards, Board b, Coordinate current
 
 			cout << output << endl;
 
+            // Intantiate the sequencial method
+            Sequential seq = *new Sequential();
+
             // Visit
             vector<Card> c = cards;
             c[i].visit();
 
             // Place it
             Board b = board;
-            b.content[0][1] = c[i];
+            b.content[0][0] = c[i];
 
             // Sequencial for i
-            seq.Process(c, b, *new Coordinate(0,0));
+            seq.Process(
+                c,
+                b,
+                *new Coordinate(0,1)
+            );
 		});
     }
 
 	// Wait the end of all the jobs
 	threadPool->waitFinished();
+    
+	// Wait the end of all the threads
+	threadPool->waitThreads();
     
     return 0;
 };
