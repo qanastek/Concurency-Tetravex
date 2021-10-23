@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/qanastek/Projet-Tetravex---Concurency/blob/master/ressources/images/logo.png" width="20%">
+  <img src="https://github.com/qanastek/Concurency-Tetravex/blob/master/ressources/images/logo.png" width="20%">
 </p>
 
 This software is an fast and reliable tetravex solver based on C++ and CUDA.
@@ -12,3 +12,9 @@ This software is an fast and reliable tetravex solver based on C++ and CUDA.
 
 - Start the project
   - `make para`
+
+## Architecture
+
+<p align="center">
+  <img src="https://github.com/qanastek/Concurency-Tetravex/blob/master/modelisation/Render/Overview.png" width="80%">
+</p>
